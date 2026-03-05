@@ -8,6 +8,8 @@
     --input-bg: #ffffff;
     --hr-color: #e9ecef;
     --accent-color: #4a90e2;
+    --info-box-bg: #f1f8ff;
+    --footer-text: #6c757d;
 }
 
 [data-theme='dark'] {
@@ -19,6 +21,8 @@
     --btn-text: #e0e0e0;
     --input-bg: #2d2d2d;
     --hr-color: #333333;
+    --info-box-bg: #2a3b4d;
+    --footer-text: #adb5bd;
 }
 
 body {
@@ -30,6 +34,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     transition: all 0.3s ease;
+    line-height: 1.6;
 }
 
 .container {
@@ -58,8 +63,9 @@ body {
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
 }
 
 .subtitle {
@@ -73,12 +79,12 @@ header h1 {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
 }
 
 .nav-btn {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
     border: 2px solid transparent;
     border-radius: 12px;
@@ -115,11 +121,17 @@ header h1 {
     padding: 2.5rem;
     border-radius: 24px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-bottom: 3rem;
 }
 
 .card h2 {
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-desc {
+    opacity: 0.8;
+    margin-bottom: 2rem;
 }
 
 .action-btn, .option-btn {
@@ -131,12 +143,14 @@ header h1 {
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    margin: 1rem 0.5rem;
+    margin: 0.5rem;
     transition: transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .option-btn {
-    display: inline-block;
     background: #6c757d;
 }
 
@@ -145,6 +159,28 @@ header h1 {
     justify-content: center;
     gap: 10px;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Info Box */
+.info-box {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    background-color: var(--info-box-bg);
+    border-radius: 12px;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.info-box h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.info-box p {
+    margin: 0;
+    opacity: 0.9;
 }
 
 /* Lotto Numbers */
@@ -157,13 +193,13 @@ header h1 {
 }
 
 .number-circle {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: white;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -205,10 +241,34 @@ header h1 {
     transition: width 0.3s ease;
 }
 
-/* Sections */
-.contact-section, .comments-section {
-    margin-top: 5rem;
+/* Quality Content Article */
+.quality-content {
     text-align: left;
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+}
+
+.quality-content h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.content-block {
+    margin-bottom: 2rem;
+}
+
+.content-block h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+/* Forms & Sections */
+.contact-section, .comments-section {
+    margin-top: 4rem;
+    text-align: left;
+    padding: 0 1rem;
 }
 
 hr {
@@ -244,4 +304,35 @@ input, textarea {
 [data-theme='dark'] .submit-btn {
     background: #eee;
     color: #333;
+}
+
+/* Footer */
+footer {
+    margin-top: 5rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--hr-color);
+    color: var(--footer-text);
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--footer-text);
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.privacy-notice {
+    font-size: 0.8rem;
+    opacity: 0.8;
 }
