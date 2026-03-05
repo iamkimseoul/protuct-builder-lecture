@@ -1,5 +1,3 @@
-const generatorBtn = document.getElementById('generator-btn');
-const numbersContainer = document.getElementById('numbers-container');
 const lightThemeBtn = document.getElementById('light-theme-btn');
 const darkThemeBtn = document.getElementById('dark-theme-btn');
 const systemThemeBtn = document.getElementById('system-theme-btn');
@@ -26,44 +24,72 @@ lightThemeBtn.addEventListener('click', () => setTheme('light'));
 darkThemeBtn.addEventListener('click', () => setTheme('dark'));
 systemThemeBtn.addEventListener('click', () => setTheme('system'));
 
-// Lotto Logic
-function generateLottoNumbers() {
-    const numbers = new Set();
-    while (numbers.size < 6) {
-        const randomNumber = Math.floor(Math.random() * 45) + 1;
-        numbers.add(randomNumber);
+// Teachable Machine Logic
+const URL = "https://teachablemachine.withgoogle.com/models/05WpRIQg9/";
+let model, webcam, labelContainer, maxPredictions;
+
+async function init() {
+    // Hide start button
+    document.querySelector('.start-btn').style.display = 'none';
+
+    const modelURL = URL + "model.json";
+    const metadataURL = URL + "metadata.json";
+
+    model = await tmImage.load(modelURL, metadataURL);
+    maxPredictions = model.getTotalClasses();
+
+    const flip = true; 
+    webcam = new tmImage.Webcam(300, 300, flip); 
+    await webcam.setup(); 
+    await webcam.play();
+    window.requestAnimationFrame(loop);
+
+    const webcamContainer = document.getElementById("webcam-container");
+    webcamContainer.appendChild(webcam.canvas);
+    
+    labelContainer = document.getElementById("label-container");
+    labelContainer.innerHTML = ''; // Clear previous
+    for (let i = 0; i < maxPredictions; i++) {
+        const barContainer = document.createElement("div");
+        barContainer.className = "prediction-bar-container";
+        
+        const labelName = document.createElement("span");
+        labelName.className = "prediction-label";
+        
+        const barWrapper = document.createElement("div");
+        barWrapper.className = "bar-wrapper";
+        
+        const bar = document.createElement("div");
+        bar.className = "bar";
+        
+        barWrapper.appendChild(bar);
+        barContainer.appendChild(labelName);
+        barContainer.appendChild(barWrapper);
+        labelContainer.appendChild(barContainer);
     }
-    return Array.from(numbers).sort((a, b) => a - b);
 }
 
-function displayNumbers(numbers) {
-    numbersContainer.innerHTML = '';
-    for (const number of numbers) {
-        const circle = document.createElement('div');
-        circle.classList.add('number-circle');
-        circle.textContent = number;
+async function loop() {
+    webcam.update(); 
+    await predict();
+    window.requestAnimationFrame(loop);
+}
 
-        if (number <= 10) {
-            circle.style.backgroundColor = '#fbc400';
-        } else if (number <= 20) {
-            circle.style.backgroundColor = '#69c8f2';
-        } else if (number <= 30) {
-            circle.style.backgroundColor = '#ff7272';
-        } else if (number <= 40) {
-            circle.style.backgroundColor = '#aaa';
-        } else {
-            circle.style.backgroundColor = '#b0d840';
+async function predict() {
+    const prediction = await model.predict(webcam.canvas);
+    for (let i = 0; i < maxPredictions; i++) {
+        const className = prediction[i].className;
+        const probability = (prediction[i].probability * 100).toFixed(0);
+        
+        const barContainer = labelContainer.childNodes[i];
+        barContainer.querySelector('.prediction-label').innerText = `${className}: ${probability}%`;
+        barContainer.querySelector('.bar').style.width = probability + "%";
+        
+        // Add specific colors based on class
+        if (className === "강아지") {
+            barContainer.querySelector('.bar').style.backgroundColor = "#ffc107";
+        } else if (className === "고양이") {
+            barContainer.querySelector('.bar').style.backgroundColor = "#17a2b8";
         }
-
-        numbersContainer.appendChild(circle);
     }
 }
-
-generatorBtn.addEventListener('click', () => {
-    const generatedNumbers = generateLottoNumbers();
-    displayNumbers(generatedNumbers);
-});
-
-// Initial generation
-const initialNumbers = generateLottoNumbers();
-displayNumbers(initialNumbers);

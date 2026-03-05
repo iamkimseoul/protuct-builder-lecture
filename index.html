@@ -1,23 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Number Generator</title>
+    <title>인공지능 동물상 테스트</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <div class="theme-selector">
-            <button id="light-theme-btn" class="theme-btn">Light Mode</button>
-            <button id="dark-theme-btn" class="theme-btn">Dark Mode</button>
-            <button id="system-theme-btn" class="theme-btn">System Preference</button>
+            <button id="light-theme-btn" class="theme-btn">Light</button>
+            <button id="dark-theme-btn" class="theme-btn">Dark</button>
+            <button id="system-theme-btn" class="theme-btn">System</button>
         </div>
-        <h1>Lotto Number Generator</h1>
-        <button id="generator-btn">Generate Numbers</button>
-        <div id="numbers-container"></div>
+        
+        <header>
+            <h1>인공지능 동물상 테스트</h1>
+            <p class="subtitle">나는 강아지상일까, 고양이상일까?</p>
+        </header>
 
-        <div class="contact-section">
+        <main>
+            <div id="upload-area" class="upload-box">
+                <button type="button" class="start-btn" onclick="init()">카메라 시작하기</button>
+                <div id="webcam-container"></div>
+                <div id="label-container"></div>
+            </div>
+        </main>
+
+        <section class="contact-section">
             <hr>
             <h3>제휴 문의</h3>
             <form action="https://formspree.io/f/xnjganvk" method="POST" id="contact-form">
@@ -29,22 +39,13 @@
                 </div>
                 <button type="submit" class="submit-btn">보내기</button>
             </form>
-        </div>
+        </section>
 
-        <div class="comments-section">
+        <section class="comments-section">
             <hr>
             <div id="disqus_thread"></div>
             <script>
-                /**
-                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                /*
-                var disqus_config = function () {
-                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                };
-                */
-                (function() { // DON'T EDIT BELOW THIS LINE
+                (function() {
                 var d = document, s = d.createElement('script');
                 s.src = 'https://productbilder.disqus.com/embed.js';
                 s.setAttribute('data-timestamp', +new Date());
@@ -52,8 +53,12 @@
                 })();
             </script>
             <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        </div>
+        </section>
     </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
