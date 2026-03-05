@@ -106,12 +106,12 @@ body {
 }
 
 /* Contact Section Styles */
-.contact-section {
+.contact-section, .comments-section {
     margin-top: 3rem;
     text-align: left;
 }
 
-.contact-section hr {
+.contact-section hr, .comments-section hr {
     border: 0;
     border-top: 1px solid var(--hr-color);
     margin-bottom: 2rem;
