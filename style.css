@@ -7,6 +7,7 @@
     --btn-text: #212529;
     --input-bg: #ffffff;
     --hr-color: #e9ecef;
+    --accent-color: #4a90e2;
 }
 
 [data-theme='dark'] {
@@ -33,7 +34,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     padding: 2rem;
     text-align: center;
 }
@@ -41,18 +42,19 @@ body {
 .theme-selector {
     display: flex;
     justify-content: flex-end;
-    gap: 0.5rem;
     margin-bottom: 2rem;
 }
 
 .theme-btn {
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
     border: 1px solid var(--btn-border);
     background: var(--btn-bg);
     color: var(--btn-text);
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 header h1 {
@@ -63,44 +65,116 @@ header h1 {
 .subtitle {
     font-size: 1.1rem;
     opacity: 0.8;
+    margin-bottom: 2rem;
+}
+
+/* Service Navigation */
+.service-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
     margin-bottom: 3rem;
 }
 
-.upload-box {
-    background: var(--container-bg);
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    margin-bottom: 3rem;
-}
-
-.start-btn {
+.nav-btn {
     padding: 1rem 2rem;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
-    background: #4a90e2;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    background: var(--container-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.nav-btn.active {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+/* Content Sections */
+.content-section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.content-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    background: var(--container-bg);
+    padding: 2.5rem;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.action-btn, .option-btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: var(--accent-color);
     color: white;
     border: none;
     border-radius: 12px;
     cursor: pointer;
+    margin: 1rem 0.5rem;
     transition: transform 0.2s;
 }
 
-.start-btn:hover {
-    transform: scale(1.05);
+.option-btn {
+    display: inline-block;
+    background: #6c757d;
 }
 
-#webcam-container {
+.animal-options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+/* Lotto Numbers */
+#numbers-container {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.number-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Animal AI UI */
+#webcam-container, #image-preview-container {
     margin: 2rem auto;
-    width: 300px;
-    height: 300px;
+    max-width: 300px;
     border-radius: 20px;
     overflow: hidden;
-    background: #eee;
-}
-
-canvas {
-    border-radius: 20px;
 }
 
 #label-container {
@@ -119,9 +193,9 @@ canvas {
 }
 
 .bar-wrapper {
-    height: 20px;
+    height: 18px;
     background: #eee;
-    border-radius: 10px;
+    border-radius: 9px;
     overflow: hidden;
 }
 
@@ -133,18 +207,14 @@ canvas {
 
 /* Sections */
 .contact-section, .comments-section {
-    margin-top: 4rem;
+    margin-top: 5rem;
     text-align: left;
 }
 
 hr {
     border: 0;
     border-top: 1px solid var(--hr-color);
-    margin-bottom: 2rem;
-}
-
-.form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 2.5rem;
 }
 
 input, textarea {
@@ -156,16 +226,18 @@ input, textarea {
     color: var(--text-color);
     font-family: inherit;
     box-sizing: border-box;
+    margin-bottom: 1rem;
 }
 
 .submit-btn {
     width: 100%;
-    padding: 1rem;
+    padding: 1.2rem;
     border-radius: 12px;
     border: none;
     background: #333;
     color: white;
     font-weight: bold;
+    font-size: 1rem;
     cursor: pointer;
 }
 

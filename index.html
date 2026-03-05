@@ -3,27 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>인공지능 동물상 테스트</title>
+    <title>AI 유틸리티 포털</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <div class="theme-selector">
-            <button id="light-theme-btn" class="theme-btn">Light</button>
-            <button id="dark-theme-btn" class="theme-btn">Dark</button>
+            <button id="theme-toggle-btn" class="theme-btn">다크 모드로 전환</button>
         </div>
         
         <header>
-            <h1>인공지능 동물상 테스트</h1>
-            <p class="subtitle">나는 강아지상일까, 고양이상일까?</p>
+            <h1>AI 유틸리티 포털</h1>
+            <p class="subtitle">원하시는 서비스를 선택하세요</p>
         </header>
 
-        <main>
-            <div id="upload-area" class="upload-box">
-                <button type="button" class="start-btn" onclick="init()">카메라 시작하기</button>
-                <div id="webcam-container"></div>
-                <div id="label-container"></div>
-            </div>
+        <nav class="service-nav">
+            <button id="nav-lotto-btn" class="nav-btn active">로또 번호 추천</button>
+            <button id="nav-animal-btn" class="nav-btn">동물상 테스트</button>
+        </nav>
+
+        <main id="main-content">
+            <!-- Lotto Section -->
+            <section id="lotto-section" class="content-section active">
+                <div class="card">
+                    <h2>행운의 로또 번호</h2>
+                    <p>인공지능이 추천하는(?) 행운의 번호를 받아보세요.</p>
+                    <button id="generator-btn" class="action-btn">번호 생성하기</button>
+                    <div id="numbers-container"></div>
+                </div>
+            </section>
+
+            <!-- Animal Section -->
+            <section id="animal-section" class="content-section">
+                <div class="card">
+                    <h2>동물상 테스트</h2>
+                    <p>강아지상일까, 고양이상일까? 분석 방법을 선택하세요.</p>
+                    
+                    <div class="animal-options">
+                        <button type="button" class="option-btn" onclick="startCamera()">실시간 카메라</button>
+                        <div class="file-upload-wrapper">
+                            <label for="file-upload" class="option-btn">사진 파일 업로드</label>
+                            <input id="file-upload" type="file" accept="image/*" onchange="handleFileUpload(event)" style="display:none;">
+                        </div>
+                    </div>
+
+                    <div id="webcam-container"></div>
+                    <div id="image-preview-container">
+                        <img id="image-preview" src="#" alt="미리보기" style="display:none; max-width: 100%; border-radius: 12px;">
+                    </div>
+                    <div id="label-container"></div>
+                </div>
+            </section>
         </main>
 
         <section class="contact-section">
@@ -51,7 +81,7 @@
                 (d.head || d.body).appendChild(s);
                 })();
             </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            <noscript>서비스를 이용하시려면 자바스크립트를 활성화해주세요.</noscript>
         </section>
     </div>
 
