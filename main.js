@@ -1,16 +1,10 @@
 const lightThemeBtn = document.getElementById('light-theme-btn');
 const darkThemeBtn = document.getElementById('dark-theme-btn');
-const systemThemeBtn = document.getElementById('system-theme-btn');
 
 // Theme Management
 function setTheme(theme) {
-    if (theme === 'system') {
-        localStorage.removeItem('theme');
-        document.documentElement.removeAttribute('data-theme');
-    } else {
-        localStorage.setItem('theme', theme);
-        document.documentElement.setAttribute('data-theme', theme);
-    }
+    localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
 }
 
 // Initial Theme Setup
@@ -22,7 +16,6 @@ if (savedTheme) {
 // Theme Event Listeners
 lightThemeBtn.addEventListener('click', () => setTheme('light'));
 darkThemeBtn.addEventListener('click', () => setTheme('dark'));
-systemThemeBtn.addEventListener('click', () => setTheme('system'));
 
 // Teachable Machine Logic
 const URL = "https://teachablemachine.withgoogle.com/models/05WpRIQg9/";
