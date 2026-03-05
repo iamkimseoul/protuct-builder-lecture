@@ -1,39 +1,98 @@
+:root {
+    --bg-color: #f0f0f0;
+    --text-color: #333;
+    --container-bg: transparent;
+    --btn-bg: #fff;
+    --btn-border: #ccc;
+    --btn-text: #333;
+}
+
+[data-theme='dark'] {
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --btn-bg: #333;
+    --btn-border: #555;
+    --btn-text: #f0f0f0;
+}
+
+[data-theme='light'] {
+    --bg-color: #ffffff;
+    --text-color: #333;
+    --btn-bg: #f9f9f9;
+    --btn-border: #ddd;
+    --btn-text: #333;
+}
+
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
     text-align: center;
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+.theme-selector {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.theme-btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid var(--btn-border);
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    transition: all 0.2s;
+}
+
+.theme-btn:hover {
+    opacity: 0.8;
 }
 
 #generator-btn {
-    padding: 10px 20px;
+    padding: 12px 24px;
     font-size: 1.2rem;
     cursor: pointer;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--btn-border);
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    margin-bottom: 2rem;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 #numbers-container {
     display: flex;
-    gap: 10px;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .number-circle {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bold;
     color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }

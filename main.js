@@ -1,6 +1,32 @@
 const generatorBtn = document.getElementById('generator-btn');
 const numbersContainer = document.getElementById('numbers-container');
+const lightThemeBtn = document.getElementById('light-theme-btn');
+const darkThemeBtn = document.getElementById('dark-theme-btn');
+const systemThemeBtn = document.getElementById('system-theme-btn');
 
+// Theme Management
+function setTheme(theme) {
+    if (theme === 'system') {
+        localStorage.removeItem('theme');
+        document.documentElement.removeAttribute('data-theme');
+    } else {
+        localStorage.setItem('theme', theme);
+        document.documentElement.setAttribute('data-theme', theme);
+    }
+}
+
+// Initial Theme Setup
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    setTheme(savedTheme);
+}
+
+// Theme Event Listeners
+lightThemeBtn.addEventListener('click', () => setTheme('light'));
+darkThemeBtn.addEventListener('click', () => setTheme('dark'));
+systemThemeBtn.addEventListener('click', () => setTheme('system'));
+
+// Lotto Logic
 function generateLottoNumbers() {
     const numbers = new Set();
     while (numbers.size < 6) {
